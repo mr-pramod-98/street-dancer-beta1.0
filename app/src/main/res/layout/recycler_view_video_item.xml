@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/soft_black"
+    android:weightSum="100">
+
+    <LinearLayout
+        android:id="@+id/card_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:background="@color/soft_black">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/soft_black"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/post_header_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@color/soft_black"
+                    android:orientation="horizontal"
+                    android:padding="6dp"
+                    android:paddingLeft="15dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="23dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_profile_image" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="pramod_0098"
+                        android:textColor="@android:color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/line_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/post_header_id"
+                    android:background="#D5DBDB" />
+
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:id="@+id/coordinator"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp">
+
+                    <FrameLayout
+                        android:id="@+id/media_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="320dp"
+                        android:layout_below="@+id/post_header_id"
+                        android:background="#000"
+                        android:scaleType="center">
+
+                        <ImageView
+                            android:id="@+id/thumbnail"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/white"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/video_error" />
+
+                        <ImageView
+                            android:id="@+id/volume_control"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="end|bottom"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:alpha="0"
+                            android:animateLayoutChanges="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/video_volume_up" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                <View
+                    android:id="@+id/line_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/media_container"
+                    android:background="#D5DBDB" />
+
+                <RelativeLayout
+                    android:id="@+id/post_footer_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_below="@+id/media_container"
+                    android:layout_marginTop="0dp"
+                    android:padding="6dp"
+                    android:paddingLeft="15dp">
+
+                    <!-- <ToggleButton
+                         android:id="@+id/like"
+                         android:layout_width="35dp"
+                         android:layout_height="35dp"
+                         android:layout_marginRight="12dp"
+                         android:background="@drawable/toggle_like"
+                         android:textOff=""
+                         android:textOn="" />-->
+
+                    <com.varunest.sparkbutton.SparkButton
+                        android:id="@+id/like"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="12dp"
+                        app:sparkbutton_activeImage="@drawable/video_heart_on"
+                        app:sparkbutton_iconSize="25dp"
+                        app:sparkbutton_inActiveImage="@drawable/video_heart_off"
+                        app:sparkbutton_primaryColor="@color/colorAccent"
+                        app:sparkbutton_secondaryColor="@color/colorPrimaryDark" />
+
+                    <ImageView
+                        android:id="@+id/send"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_toRightOf="@id/like"
+                        android:src="@drawable/video_share" />
+
+                    <ToggleButton
+                        android:id="@+id/bookmark"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/video_toggle_save"
+                        android:textOff=""
+                        android:textOn="" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="1000 likes"
+                    android:textColor="#FFF"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <com.borjabravo.readmoretextview.ReadMoreTextView
+                    android:id="@+id/text_view"
+                    android:layout_below="@+id/post_footer_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                    android:textColor="@android:color/white"
+                    android:textSize="14dp"
+                    app:trimCollapsedText="show less"
+                    app:trimExpandedText="show more"
+                    app:trimLength="30"
+                    app:trimMode="trimModeLength" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:layout_below="@id/card_wrapper"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="0dp"
+        android:background="@color/grey_white" />
+
+</RelativeLayout>

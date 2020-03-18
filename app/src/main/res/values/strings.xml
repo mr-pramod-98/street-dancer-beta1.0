@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">street-dancer-beta1.0</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="profile_fragment">Hello profile fragment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
