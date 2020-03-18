@@ -51,10 +51,10 @@ public class ProfileFollowersFollowingInfoFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        //recyclerView = view.findViewById(R.id.recycler_view_followers_followings);
+        recyclerView = view.findViewById(R.id.recycler_view_followers_followings);
 
         //setObjects();
-        //setAdapter();
+        setAdapter();
     }
 
     private void setObjects(){
