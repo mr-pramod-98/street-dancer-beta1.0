@@ -14,9 +14,11 @@
             android:id="@+id/toolbar_user_uploads"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="?attr/homeAsUpIndicator"
             android:background="@color/toolbar_background"
             app:titleTextColor="#FFF"
             style="@style/ToolbarTheme"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="My posts" />
 
         <com.example.street_dancer_beta10.SharedComponents.RecyclerView.VideoPlayerRecyclerView

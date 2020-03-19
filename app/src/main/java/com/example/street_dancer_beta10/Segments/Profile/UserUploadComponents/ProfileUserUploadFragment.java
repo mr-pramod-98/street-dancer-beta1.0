@@ -50,6 +50,14 @@ public class ProfileUserUploadFragment extends Fragment {
 
         toolbar = view.findViewById(R.id.toolbar_user_uploads);
 
+        // TO HANDEL BACK BUTTON PRESS IN THE TOOLBAR
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
+
         return view;
     }
 

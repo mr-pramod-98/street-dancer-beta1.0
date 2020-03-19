@@ -8,8 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat">
         <item name="android:textStyle">bold</item>
+        <item name="colorControlNormal">@color/toolbar_back_button_indicator</item>
     </style>
 
 </resources>
