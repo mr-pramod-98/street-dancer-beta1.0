@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="130dp"
     android:focusableInTouchMode="true"
     android:layout_marginLeft="2dp"
     android:layout_marginBottom="2dp"
