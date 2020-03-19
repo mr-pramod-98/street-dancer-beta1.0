@@ -20,7 +20,8 @@
             android:background="@color/toolbar_background"
             app:title="pramod_0098"
             app:titleTextColor="@android:color/white"
-            style="@style/ToolbarTheme" />
+            style="@style/ToolbarTheme"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
         <RelativeLayout
             android:id="@+id/profile_wrapper"
