@@ -12,10 +12,12 @@
         android:id="@+id/followers_following_toolbar_id"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="?attr/homeAsUpIndicator"
         android:background="@color/toolbar_background"
         app:title="pramod_0098"
         app:titleTextColor="@android:color/white"
-        style="@style/ToolbarTheme" />
+        style="@style/ToolbarTheme"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <com.google.android.material.tabs.TabLayout
         android:layout_below="@id/followers_following_toolbar_id"

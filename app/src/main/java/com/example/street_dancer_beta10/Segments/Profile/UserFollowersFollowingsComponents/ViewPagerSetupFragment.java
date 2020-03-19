@@ -46,6 +46,15 @@ public class ViewPagerSetupFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile_view_page_setup, container, false);
         toolbar = view.findViewById(R.id.followers_following_toolbar_id);
+
+        // TO HANDEL BACK BUTTON PRESS IN THE TOOLBAR
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
+
         return view;
     }
 
