@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -197,13 +198,15 @@ public class ProfileFragment extends Fragment {
 
     private void setAdapter() {
 
+        // CREATE RECYCLER-VIEW ADAPTER OBJECT
         adapter = new ProfileRecyclerViewAdapter(getContext(), videoPlayerModels, initGlide());
         recyclerView.setHasFixedSize(true);
+
+        // SETUP THE ADAPTER
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        Log.d(TAG, "setAdapter: setting adapter is complete");
-
+        // SET THE LAYOUT TO "GRID-LAYOUT"
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
     }
 
     private RequestManager initGlide(){

@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="140dp"
     android:focusableInTouchMode="true"
-    android:padding="10dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginBottom="4dp">
+    android:layout_marginLeft="2dp"
+    android:layout_marginBottom="2dp"
+    app:cardCornerRadius="0dp">
 
     <ImageView
         android:id="@+id/post_thumbnail"
         android:layout_width="match_parent"
-        android:layout_height="185dp"
-        android:src="@drawable/video_profile_image"
-        android:padding="10dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:src="@drawable/video_profile_image">
     </ImageView>
 
 </androidx.cardview.widget.CardView>
