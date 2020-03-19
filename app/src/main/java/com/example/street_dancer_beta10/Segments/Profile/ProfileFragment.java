@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -31,9 +30,7 @@ import com.example.street_dancer_beta10.Segments.Profile.MenuFragments.SavedFrag
 import com.example.street_dancer_beta10.Segments.Profile.MenuFragments.SecurityFragment;
 import com.example.street_dancer_beta10.HomeActivity;
 import com.example.street_dancer_beta10.R;
-import com.example.street_dancer_beta10.Segments.Profile.UserFollowersFollowingsComponents.ProfileFollowersFollowingInfoFragment;
 import com.example.street_dancer_beta10.Segments.Profile.UserFollowersFollowingsComponents.ViewPagerSetupFragment;
-import com.example.street_dancer_beta10.Segments.Profile.UserUploadComponents.ProfileRecyclerViewAdapter;
 import com.example.street_dancer_beta10.Segments.Profile.UserUploadComponents.ProfileUserUploadFragment;
 import com.example.street_dancer_beta10.SharedComponents.Models.VideoPlayerModel;
 

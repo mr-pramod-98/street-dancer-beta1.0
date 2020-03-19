@@ -1,4 +1,4 @@
-package com.example.street_dancer_beta10.Segments.Profile.UserUploadComponents;
+package com.example.street_dancer_beta10.Segments.Profile;
 
 import android.content.Context;
 import android.util.Log;

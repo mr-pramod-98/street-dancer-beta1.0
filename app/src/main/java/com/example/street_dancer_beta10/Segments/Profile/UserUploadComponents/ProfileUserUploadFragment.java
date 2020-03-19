@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.street_dancer_beta10.R;
+import com.example.street_dancer_beta10.Segments.Profile.ProfileRecyclerViewAdapter;
 import com.example.street_dancer_beta10.SharedComponents.Models.VideoPlayerModel;
 import com.example.street_dancer_beta10.SharedComponents.RecyclerView.VerticalSpacingItemDecorator;
 import com.example.street_dancer_beta10.SharedComponents.RecyclerView.VideoPlayerRecyclerAdapter;

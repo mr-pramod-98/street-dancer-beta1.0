@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.RequestManager;
 import com.example.street_dancer_beta10.R;
-import com.example.street_dancer_beta10.Segments.Profile.UserUploadComponents.ProfileRecyclerViewAdapter;
+import com.example.street_dancer_beta10.Segments.Profile.ProfileRecyclerViewAdapter;
 import com.example.street_dancer_beta10.SharedComponents.Models.VideoPlayerModel;
 import com.google.android.material.snackbar.Snackbar;
 
