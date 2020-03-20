@@ -4,16 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
+    android:layout_height="190dp"
     android:focusableInTouchMode="true"
-    android:layout_marginLeft="2dp"
-    android:layout_marginBottom="2dp"
-    app:cardCornerRadius="0dp">
+    android:layout_marginLeft="10dp"
+    android:layout_marginBottom="6dp"
+    app:cardCornerRadius="6dp">
 
     <ImageView
         android:id="@+id/post_thumbnail"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:src="@drawable/video_profile_image">
     </ImageView>
 

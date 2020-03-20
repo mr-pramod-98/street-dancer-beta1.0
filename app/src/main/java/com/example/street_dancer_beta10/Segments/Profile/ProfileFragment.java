@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -41,8 +42,8 @@ public class ProfileFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ProfileRecyclerViewAdapter adapter;
-    private LinearLayout followers_linearLayout;
-    private LinearLayout following_linearlayout;
+    private TextView followers_linearLayout;
+    private TextView following_linearlayout;
     private Fragment fragment;
 
     private ArrayList<VideoPlayerModel> videoPlayerModels = new ArrayList<>();
@@ -112,8 +113,8 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Log.d(TAG, "onViewCreated: inside on-view-created");
         recyclerView = (RecyclerView) view.findViewById(R.id.profile_recycler_view);
-        followers_linearLayout = (LinearLayout) view.findViewById(R.id.layout_followers_id);
-        following_linearlayout = (LinearLayout) view.findViewById(R.id.layout_following_id);
+        followers_linearLayout = (TextView) view.findViewById(R.id.layout_followers_id);
+        following_linearlayout = (TextView) view.findViewById(R.id.layout_following_id);
 
         Log.d(TAG, "onViewCreated: before call");
         setMediaObjects();
@@ -203,7 +204,7 @@ public class ProfileFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         // SET THE LAYOUT TO "GRID-LAYOUT"
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
     }
 
     private RequestManager initGlide(){
