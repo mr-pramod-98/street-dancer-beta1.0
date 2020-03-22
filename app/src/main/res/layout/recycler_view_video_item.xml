@@ -61,20 +61,21 @@
                 <androidx.coordinatorlayout.widget.CoordinatorLayout
                     android:id="@+id/coordinator"
                     android:layout_width="match_parent"
-                    android:layout_height="320dp">
+                    android:layout_height="320dp"
+                    android:background="@android:color/white">
 
                     <FrameLayout
                         android:id="@+id/media_container"
                         android:layout_width="match_parent"
                         android:layout_height="320dp"
                         android:layout_below="@+id/post_header_id"
-                        android:background="#000"
                         android:scaleType="center">
 
                         <ImageView
                             android:id="@+id/thumbnail"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_gravity="center"
                             android:background="@android:color/white"
                             android:scaleType="centerInside"
                             android:src="@drawable/video_error" />
@@ -114,16 +115,14 @@
                     android:id="@+id/post_footer_id"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:layout_below="@+id/media_container"
                     android:layout_marginTop="0dp"
-                    android:padding="6dp"
-                    android:paddingLeft="15dp">
+                    android:padding="6dp">
 
                     <com.varunest.sparkbutton.SparkButton
                         android:id="@+id/like"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:layout_marginRight="12dp"
+                        android:layout_marginStart="8dp"
                         app:sparkbutton_activeImage="@drawable/video_heart_on"
                         app:sparkbutton_iconSize="25dp"
                         app:sparkbutton_inActiveImage="@drawable/video_heart_off"
@@ -132,13 +131,12 @@
 
                     <ImageView
                         android:id="@+id/send"
+                        android:layout_toEndOf="@id/like"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_toRightOf="@id/like"
+                        android:layout_marginStart="18dp"
                         android:src="@drawable/video_share" />
 
                     <ToggleButton
@@ -147,7 +145,7 @@
                         android:layout_height="25dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="12dp"
+                        android:layout_marginEnd="10dp"
                         android:background="@drawable/video_toggle_save"
                         android:textOff=""
                         android:textOn="" />

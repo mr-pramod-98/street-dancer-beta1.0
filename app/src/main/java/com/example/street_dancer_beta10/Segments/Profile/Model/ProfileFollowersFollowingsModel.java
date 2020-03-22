@@ -2,37 +2,37 @@ package com.example.street_dancer_beta10.Segments.Profile.Model;
 
 public class ProfileFollowersFollowingsModel {
 
+    private String UserName;
     private String Name;
-    private String Status;
-    private int photo;
+    private int UserProfile;
 
-    public ProfileFollowersFollowingsModel(String name, String status, int photo) {
-        Name = name;
-        Status = status;
-        this.photo = photo;
+    public ProfileFollowersFollowingsModel(String UserName, String Name, int UserProfile) {
+        this.UserName = UserName;
+        this.Name = Name;
+        this.UserProfile = UserProfile;
+    }
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String UserName) {
+        this.UserName = UserName;
     }
 
     public String getName() {
         return Name;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
-    public String getStatus() {
-        return Status;
+    public int getUserProfile() {
+        return UserProfile;
     }
 
-    public void setStatus(String status) {
-        Status = status;
-    }
-
-    public int getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(int photo) {
-        this.photo = photo;
+    public void setUserProfile(int UserProfile) {
+        this.UserProfile = UserProfile;
     }
 }

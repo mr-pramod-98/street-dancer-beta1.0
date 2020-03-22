@@ -27,6 +27,7 @@
         android:background="@color/fragment_background"
         app:tabMode="fixed"
         app:tabGravity="fill"
+        app:tabSelectedTextColor="@color/grey_white"
         app:tabTextColor="@android:color/white"
         app:tabIndicatorColor="@android:color/white" />
 

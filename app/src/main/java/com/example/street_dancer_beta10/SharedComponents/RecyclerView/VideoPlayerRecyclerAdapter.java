@@ -71,11 +71,12 @@ public class VideoPlayerRecyclerAdapter extends RecyclerView.Adapter<VideoPlayer
 
                 if (isChecked) {
 
-                    Snackbar.make(holder.coordinatorLayout, "Liked Respective profile", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).setActionTextColor(Color.parseColor("#F7330C")).show();
+                    Snackbar.make(holder.coordinatorLayout, "Saved", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null)
+                            .setActionTextColor(Color.parseColor("#F7330C"))
+                            .show();
                     buttonView.setChecked(true);
                 } else {
-                    Toast.makeText(context, "post un-saved", Toast.LENGTH_LONG).show();
                     buttonView.setChecked(false);
                 }
             }
@@ -115,7 +116,7 @@ public class VideoPlayerRecyclerAdapter extends RecyclerView.Adapter<VideoPlayer
         public VideoPlayerViewHolder(@NonNull View itemView) {
             super(itemView);
             parent = itemView;
-            send_post = (ImageView) itemView.findViewById(R.id.send);
+            send_post = itemView.findViewById(R.id.send);
             media_container = itemView.findViewById(R.id.media_container);
             thumbnail = itemView.findViewById(R.id.thumbnail);
             progressBar = itemView.findViewById(R.id.progressBar);

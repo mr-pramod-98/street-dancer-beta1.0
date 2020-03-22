@@ -4,26 +4,39 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/soft_black"
-    android:padding="10dp">
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/followers_following_profile"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/ic_launcher_background" />
 
     <TextView
         android:id="@+id/followers_following_username"
         android:layout_toEndOf="@+id/followers_following_profile"
         android:layout_toStartOf="@+id/button"
-        android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:text="pramod_0098"
-        android:textSize="16sp"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
+        android:textSize="14dp"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/followers_following_name"
+        android:layout_below="@+id/followers_following_username"
+        android:layout_toEndOf="@+id/followers_following_profile"
+        android:layout_toStartOf="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="pramod_0098"
+        android:textSize="12dp"
+        android:textColor="@color/grey_white"/>
 
     <TextView
         android:id="@+id/button"
@@ -31,10 +44,11 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="5dp"
-        android:text="remove"
-        android:textSize="16sp"
-        android:textColor="@android:color/white"/>
+        android:text="Remove"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/profile_followers_following_button_style"/>
 
     <View
         android:layout_width="match_parent"

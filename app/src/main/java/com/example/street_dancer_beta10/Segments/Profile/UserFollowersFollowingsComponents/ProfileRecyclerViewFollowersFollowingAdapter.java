@@ -48,8 +48,9 @@ public class ProfileRecyclerViewFollowersFollowingAdapter extends RecyclerView.A
         } else {
             holder.button.setText("remove");
         }
-        holder.username.setText(profileFollowersFollowingsModels.get(position).getName());
-        holder.profile.setImageResource(profileFollowersFollowingsModels.get(position).getPhoto());
+        holder.username.setText(profileFollowersFollowingsModels.get(position).getUserName());
+        holder.username_name.setText(profileFollowersFollowingsModels.get(position).getName());
+        holder.profile.setImageResource(profileFollowersFollowingsModels.get(position).getUserProfile());
 
         /*holder.followers_followings_item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +69,7 @@ public class ProfileRecyclerViewFollowersFollowingAdapter extends RecyclerView.A
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView username;
+        private TextView username_name;
         private TextView button;
         private ImageView profile;
         private RelativeLayout followers_followings_item;
@@ -78,6 +80,7 @@ public class ProfileRecyclerViewFollowersFollowingAdapter extends RecyclerView.A
             profile = (ImageView) itemView.findViewById(R.id.followers_following_profile);
             username = (TextView) itemView.findViewById(R.id.followers_following_username);
             button = (TextView) itemView.findViewById(R.id.button);
+            username_name = (TextView) itemView.findViewById(R.id.followers_following_name);
             //followers_followings_item = (RelativeLayout) itemView.findViewById(R.id.followers_followings_item);
 
         }

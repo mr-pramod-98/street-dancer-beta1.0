@@ -72,27 +72,27 @@ public class ViewPagerSetupFragment extends Fragment {
 
         profileFollowersFollowingsModels = new ArrayList<>();
 
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("First person", "first status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Second person", "second status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Third person", "third status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Fourth person", "fourth status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Fifth person", "fifth status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("First person", "first status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Second person", "second status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Third person", "third status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Fourth person", "fourth status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Fifth person", "fifth status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("First person", "first status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Second person", "second status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Third person", "third status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Fourth person", "fourth status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Fifth person", "fifth status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("First person", "first status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Second person", "second status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Third person", "third status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Fourth person", "fourth status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("Fifth person", "fifth status", R.drawable.video_profile_image));
-        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("First person", "first status", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("first person", "first name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("second person", "second name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("third person", "third name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("fourth person", "fourth name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("fifth person", "fifth name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("first person", "first name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("second person", "second name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("third person", "third name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("fourth person", "fourth name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("fifth person", "fifth name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("first person", "first name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("second person", "second name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("third person", "third name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("fourth person", "fourth name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("fifth person", "fifth name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("first person", "first name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("second person", "second name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("third person", "third name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("fourth person", "fourth name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("fifth person", "fifth name", R.drawable.video_profile_image));
+        profileFollowersFollowingsModels.add(new ProfileFollowersFollowingsModel("first person", "first name", R.drawable.video_profile_image));
 
     }
 
@@ -100,12 +100,8 @@ public class ViewPagerSetupFragment extends Fragment {
 
         adapter = new ViewPagerAdapter(HomeActivity.fragmentManager);
 
-        adapter.addFragment(new ProfileFollowersFollowingInfoFragment(profileFollowersFollowingsModels, true), "FOLLOWERS " + profileFollowersFollowingsModels.size());
-        adapter.addFragment(new ProfileFollowersFollowingInfoFragment(profileFollowersFollowingsModels, false), "FOLLOWING");
-
-
-        //adapter.addFragment(new ProfileFollowersFollowingInfoFragment(true), "FOLLOWERS " + profileFollowersFollowingsModels.size());
-        //adapter.addFragment(new ProfileFollowersFollowingInfoFragment(false), "FOLLOWING");
+        adapter.addFragment(new ProfileFollowersFollowingInfoFragment(profileFollowersFollowingsModels, true), "Followers-" + profileFollowersFollowingsModels.size());
+        adapter.addFragment(new ProfileFollowersFollowingInfoFragment(profileFollowersFollowingsModels, false), "Following-" + profileFollowersFollowingsModels.size());
 
         viewPager.setAdapter(adapter);
         tableLayout.setupWithViewPager(viewPager);
