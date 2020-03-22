@@ -17,7 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,9 +77,15 @@ public class ProfileFragment extends Fragment {
                 break;
         }
 
+        // MAKING CHANGES AND COMMITTING
         HomeActivity.fragmentManager
+                // BEGIN THE TRANSACTION
                 .beginTransaction()
+                // THE "fragment" WILL BE DISPLAYED IN THE "container_fragment"
                 .replace(R.id.container_fragment, fragment)
+
+                .addToBackStack(null)
+                // COMMITTING THE CHANGES
                 .commit();
 
         return true;
@@ -157,10 +162,17 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getContext(), " " + position, Toast.LENGTH_LONG).show();
                 fragment = new ProfileUserUploadFragment(position);
 
+                // MAKING CHANGES AND COMMITTING
                 HomeActivity.fragmentManager
+                        // BEGIN THE TRANSACTION
                         .beginTransaction()
+                        // THE "fragment" WILL BE DISPLAYED IN THE "container_fragment"
                         .replace(R.id.container_fragment, fragment)
+
+                        .addToBackStack(null)
+                        // COMMITTING THE CHANGES
                         .commit();
+
                 Log.d(TAG, "onClick: ProfileFragment " + position);
             }
         });

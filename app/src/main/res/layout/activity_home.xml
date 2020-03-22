@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/fragment_background"
     tools:context=".MainActivity">
 
     <FrameLayout
@@ -15,7 +15,7 @@
 
     </FrameLayout>
 
-    <com.luseen.spacenavigation.SpaceNavigationView
+   <!-- <com.luseen.spacenavigation.SpaceNavigationView
         android:id="@+id/space"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,6 +32,14 @@
         app:space_background_color="@color/nav_space"
         app:space_item_icon_only_size="40dp"
         app:space_item_icon_size="26dp"
-        app:space_item_text_size="@dimen/space_item_text_default_size" />
+        app:space_item_text_size="@dimen/space_item_text_default_size" />-->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/navigation_bar_menu_items"
+        android:layout_alignParentBottom="true"
+        android:background="@color/navigation_bar" />
 
 </RelativeLayout>
