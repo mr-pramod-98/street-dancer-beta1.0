@@ -17,7 +17,7 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.street_dancer_beta10.R;
 import com.example.street_dancer_beta10.Segments.Profile.ProfileRecyclerViewAdapter;
-import com.example.street_dancer_beta10.SharedComponents.Models.VideoPlayerModel;
+import com.example.street_dancer_beta10.SharedComponents.Models.MediaObject;
 import com.example.street_dancer_beta10.SharedComponents.RecyclerView.VerticalSpacingItemDecorator;
 import com.example.street_dancer_beta10.SharedComponents.RecyclerView.VideoPlayerRecyclerAdapter;
 import com.example.street_dancer_beta10.SharedComponents.RecyclerView.VideoPlayerRecyclerView;
@@ -28,7 +28,7 @@ public class ProfileUserUploadFragment extends Fragment {
 
     private VideoPlayerRecyclerView recyclerView;
     private ProfileRecyclerViewAdapter adapter;
-    private ArrayList<VideoPlayerModel> videoPlayerModels = new ArrayList<>();
+    private ArrayList<MediaObject> mediaObjects = new ArrayList<>();
     private Toolbar toolbar;
     private  int position;
     public ProfileUserUploadFragment() {
@@ -67,32 +67,33 @@ public class ProfileUserUploadFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (VideoPlayerRecyclerView) view.findViewById(R.id.profile_user_upload_recycler_view);
 
-        setMediaObjects();
+        getMedia();
         setAdapter();
     }
 
-    private void setMediaObjects(){
-        videoPlayerModels.add(new VideoPlayerModel("Sending Data to a New Activity with Intent Extras",
+    private void getMedia() {
+
+        mediaObjects.add(new MediaObject("Sending Data to a New Activity with Intent Extras",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/Sending+Data+to+a+New+Activity+with+Intent+Extras.mp4",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/Sending+Data+to+a+New+Activity+with+Intent+Extras.png",
                 "Description for media object #1"));
 
-        videoPlayerModels.add(new VideoPlayerModel("REST API, Retrofit2, MVVM Course SUMMARY",
+        mediaObjects.add(new MediaObject("REST API, Retrofit2, MVVM Course SUMMARY",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/REST+API+Retrofit+MVVM+Course+Summary.mp4",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/REST+API%2C+Retrofit2%2C+MVVM+Course+SUMMARY.png",
                 "Description for media object #2"));
 
-        videoPlayerModels.add(new VideoPlayerModel("MVVM and LiveData",
+        mediaObjects.add(new MediaObject("MVVM and LiveData",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/MVVM+and+LiveData+for+youtube.mp4",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/mvvm+and+livedata.png",
                 "Description for media object #3"));
 
-        videoPlayerModels.add(new VideoPlayerModel("Swiping Views with a ViewPager",
+        mediaObjects.add(new MediaObject("Swiping Views with a ViewPager",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/SwipingViewPager+Tutorial.mp4",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/Swiping+Views+with+a+ViewPager.png",
                 "Description for media object #4"));
 
-        videoPlayerModels.add(new VideoPlayerModel("Database Cache, MVVM, Retrofit, REST API demo for upcoming course",
+        mediaObjects.add(new MediaObject("Database Cache, MVVM, Retrofit, REST API demo for upcoming course",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/Rest+api+teaser+video.mp4",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/Rest+API+Integration+with+MVVM.png",
                 "Description for media object #5"));
@@ -100,7 +101,7 @@ public class ProfileUserUploadFragment extends Fragment {
 
     private void setAdapter() {
 
-        adapter = new ProfileRecyclerViewAdapter(getContext(), videoPlayerModels, initGlide());
+        adapter = new ProfileRecyclerViewAdapter(getContext(), mediaObjects, initGlide());
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -112,9 +113,9 @@ public class ProfileUserUploadFragment extends Fragment {
         VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(0);
         recyclerView.addItemDecoration(itemDecorator);
 
-        recyclerView.setMediaObjects(videoPlayerModels);
+        recyclerView.setMediaObjects(mediaObjects);
 
-        VideoPlayerRecyclerAdapter adapter = new VideoPlayerRecyclerAdapter(getContext(), videoPlayerModels, initGlide());
+        VideoPlayerRecyclerAdapter adapter = new VideoPlayerRecyclerAdapter(getContext(), mediaObjects, initGlide());
         recyclerView.setAdapter(adapter);
         recyclerView.scrollToPosition(position);
         adapter.notifyDataSetChanged();

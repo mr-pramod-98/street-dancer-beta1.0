@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.RequestManager;
 import com.example.street_dancer_beta10.R;
-import com.example.street_dancer_beta10.SharedComponents.Models.VideoPlayerModel;
+import com.example.street_dancer_beta10.SharedComponents.Models.MediaObject;
 
 import java.util.ArrayList;
 
@@ -21,13 +21,13 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
     private static final String TAG = "ProfileRecyclerViewAdap";
 
     private Context context;
-    private ArrayList<VideoPlayerModel> videoPlayerModels;
+    private ArrayList<MediaObject> mediaObjects;
     private Listener listener;
     private RequestManager requestManager;
 
-    public ProfileRecyclerViewAdapter(Context context, ArrayList<VideoPlayerModel> videoPlayerModels, RequestManager requestManager) {
+    public ProfileRecyclerViewAdapter(Context context, ArrayList<MediaObject> mediaObjects, RequestManager requestManager) {
         this.context = context;
-        this.videoPlayerModels = videoPlayerModels;
+        this.mediaObjects = mediaObjects;
         this.requestManager = requestManager;
     }
 
@@ -50,7 +50,7 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, final int position) {
         this.requestManager
-                .load(videoPlayerModels.get(position).getThumbnail())
+                .load(mediaObjects.get(position).getThumbnail())
                 .into(holder.thumbnail);
 
 
@@ -70,7 +70,7 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
 
     @Override
     public int getItemCount() {
-        return videoPlayerModels.size();
+        return mediaObjects.size();
     }
 
     public class VideoViewHolder extends RecyclerView.ViewHolder {

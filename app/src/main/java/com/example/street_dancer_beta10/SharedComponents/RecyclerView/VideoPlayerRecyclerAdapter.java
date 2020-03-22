@@ -10,7 +10,6 @@ import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -18,32 +17,26 @@ import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.bumptech.glide.RequestManager;
 import com.example.street_dancer_beta10.R;
-import com.example.street_dancer_beta10.Segments.Profile.ProfileRecyclerViewAdapter;
-import com.example.street_dancer_beta10.SharedComponents.Models.VideoPlayerModel;
+import com.example.street_dancer_beta10.SharedComponents.Models.MediaObject;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
-
 public class VideoPlayerRecyclerAdapter extends RecyclerView.Adapter<VideoPlayerRecyclerAdapter.VideoPlayerViewHolder> {
 
-    private ArrayList<VideoPlayerModel> videoPlayerModels;
+    private ArrayList<MediaObject> mediaObjects;
     private RequestManager requestManager;
     private Context context;
-    private ProfileRecyclerViewAdapter.Listener listener;
-    private View postSnackbar;
 
-    public VideoPlayerRecyclerAdapter(Context context, ArrayList<VideoPlayerModel> videoPlayerModels, RequestManager requestManager) {
-        this.videoPlayerModels = videoPlayerModels;
+    public VideoPlayerRecyclerAdapter(Context context, ArrayList<MediaObject> mediaObjects, RequestManager requestManager) {
+        this.mediaObjects = mediaObjects;
         this.requestManager = requestManager;
         this.context = context;
     }
-
 
     @NonNull
     @Override
@@ -54,8 +47,22 @@ public class VideoPlayerRecyclerAdapter extends RecyclerView.Adapter<VideoPlayer
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final VideoPlayerViewHolder holder, int position) {
-        holder.onBind(videoPlayerModels.get(position), requestManager);
+    public void onBindViewHolder(@NonNull VideoPlayerViewHolder holder, int position) {
+        holder.onBind(mediaObjects.get(position), requestManager);
+
+       /* // SET A LISTENER TO TRACK THE CHANGE OF STATE OF THE TOGGLE-BUTTON
+        holder.like_post.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    Toast.makeText(context, "post liked", Toast.LENGTH_LONG).show();
+                    buttonView.setChecked(true);
+                }else {
+                    Toast.makeText(context, "post un-liked", Toast.LENGTH_LONG).show();
+                    buttonView.setChecked(false);
+                }
+            }
+        });*/
 
         // SET A LISTENER TO TRACK THE CHANGE OF STATE OF THE TOGGLE-BUTTON
         holder.bookmark_post.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -78,20 +85,20 @@ public class VideoPlayerRecyclerAdapter extends RecyclerView.Adapter<VideoPlayer
         holder.send_post.setOnClickListener(v -> {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, mediaObjects.get(position).getMedia_url());
             sendIntent.setType("text/plain");
 
             Intent shareIntent = Intent.createChooser(sendIntent, null);
             startActivity(context, shareIntent, null);
 
         });
-
     }
 
     @Override
     public int getItemCount() {
-        return videoPlayerModels.size();
+        return mediaObjects.size();
     }
+
 
     // SETTING-UP OF VIEW-HOLDER
     public class VideoPlayerViewHolder extends RecyclerView.ViewHolder {
@@ -105,32 +112,24 @@ public class VideoPlayerRecyclerAdapter extends RecyclerView.Adapter<VideoPlayer
         ToggleButton bookmark_post;
         CoordinatorLayout coordinatorLayout;
 
-
-        RelativeLayout post_footer_id;
-        //ListView my_post_list;
-
         public VideoPlayerViewHolder(@NonNull View itemView) {
             super(itemView);
             parent = itemView;
-
-            //like_post = (ToggleButton) itemView.findViewById(R.id.like);
-            send_post = itemView.findViewById(R.id.send);
+            send_post = (ImageView) itemView.findViewById(R.id.send);
             media_container = itemView.findViewById(R.id.media_container);
             thumbnail = itemView.findViewById(R.id.thumbnail);
             progressBar = itemView.findViewById(R.id.progressBar);
             volumeControl = itemView.findViewById(R.id.volume_control);
             bookmark_post = itemView.findViewById(R.id.bookmark);
             coordinatorLayout = itemView.findViewById(R.id.coordinator);
-
         }
 
-        public void onBind(VideoPlayerModel videoPlayerModels, RequestManager requestManager) {
+        public void onBind(MediaObject mediaObject, RequestManager requestManager) {
             this.requestManager = requestManager;
             parent.setTag(this);
             this.requestManager
-                    .load(videoPlayerModels.getThumbnail())
+                    .load(mediaObject.getThumbnail())
                     .into(thumbnail);
         }
     }
 }
-

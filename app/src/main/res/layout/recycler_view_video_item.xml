@@ -4,7 +4,7 @@
     android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/soft_black"
+    android:background="@color/fragment_background"
     android:weightSum="100">
 
     <LinearLayout
@@ -17,19 +17,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="0dp"
-            android:background="@color/soft_black">
+            android:background="@color/fragment_background">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/soft_black"
+                android:background="@color/fragment_background"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/post_header_id"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:background="@color/soft_black"
                     android:orientation="horizontal"
                     android:padding="6dp"
                     android:paddingLeft="15dp">
@@ -119,15 +118,6 @@
                     android:layout_marginTop="0dp"
                     android:padding="6dp"
                     android:paddingLeft="15dp">
-
-                    <!-- <ToggleButton
-                         android:id="@+id/like"
-                         android:layout_width="35dp"
-                         android:layout_height="35dp"
-                         android:layout_marginRight="12dp"
-                         android:background="@drawable/toggle_like"
-                         android:textOff=""
-                         android:textOn="" />-->
 
                     <com.varunest.sparkbutton.SparkButton
                         android:id="@+id/like"

@@ -32,7 +32,7 @@ import com.example.street_dancer_beta10.HomeActivity;
 import com.example.street_dancer_beta10.R;
 import com.example.street_dancer_beta10.Segments.Profile.UserFollowersFollowingsComponents.ViewPagerSetupFragment;
 import com.example.street_dancer_beta10.Segments.Profile.UserUploadComponents.ProfileUserUploadFragment;
-import com.example.street_dancer_beta10.SharedComponents.Models.VideoPlayerModel;
+import com.example.street_dancer_beta10.SharedComponents.Models.MediaObject;
 
 import java.util.ArrayList;
 
@@ -45,7 +45,7 @@ public class ProfileFragment extends Fragment {
     private TextView following_linearlayout;
     private Fragment fragment;
 
-    private ArrayList<VideoPlayerModel> videoPlayerModels = new ArrayList<>();
+    private ArrayList<MediaObject> mediaObjects = new ArrayList<>();
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -122,7 +122,7 @@ public class ProfileFragment extends Fragment {
         following_linearlayout = (TextView) view.findViewById(R.id.layout_following_id);
 
         Log.d(TAG, "onViewCreated: before call");
-        setMediaObjects();
+        setMedia();
         setAdapter();
         Log.d(TAG, "onViewCreated: after call");
 
@@ -179,28 +179,29 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void setMediaObjects(){
-        videoPlayerModels.add(new VideoPlayerModel("Sending Data to a New Activity with Intent Extras",
+    private void setMedia() {
+
+        mediaObjects.add(new MediaObject("Sending Data to a New Activity with Intent Extras",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/Sending+Data+to+a+New+Activity+with+Intent+Extras.mp4",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/Sending+Data+to+a+New+Activity+with+Intent+Extras.png",
                 "Description for media object #1"));
 
-        videoPlayerModels.add(new VideoPlayerModel("REST API, Retrofit2, MVVM Course SUMMARY",
+        mediaObjects.add(new MediaObject("REST API, Retrofit2, MVVM Course SUMMARY",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/REST+API+Retrofit+MVVM+Course+Summary.mp4",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/REST+API%2C+Retrofit2%2C+MVVM+Course+SUMMARY.png",
                 "Description for media object #2"));
 
-        videoPlayerModels.add(new VideoPlayerModel("MVVM and LiveData",
+        mediaObjects.add(new MediaObject("MVVM and LiveData",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/MVVM+and+LiveData+for+youtube.mp4",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/mvvm+and+livedata.png",
                 "Description for media object #3"));
 
-        videoPlayerModels.add(new VideoPlayerModel("Swiping Views with a ViewPager",
+        mediaObjects.add(new MediaObject("Swiping Views with a ViewPager",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/SwipingViewPager+Tutorial.mp4",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/Swiping+Views+with+a+ViewPager.png",
                 "Description for media object #4"));
 
-        videoPlayerModels.add(new VideoPlayerModel("Database Cache, MVVM, Retrofit, REST API demo for upcoming course",
+        mediaObjects.add(new MediaObject("Database Cache, MVVM, Retrofit, REST API demo for upcoming course",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/Rest+api+teaser+video.mp4",
                 "https://s3.ca-central-1.amazonaws.com/codingwithmitch/media/VideoPlayerRecyclerView/Rest+API+Integration+with+MVVM.png",
                 "Description for media object #5"));
@@ -209,7 +210,7 @@ public class ProfileFragment extends Fragment {
     private void setAdapter() {
 
         // CREATE RECYCLER-VIEW ADAPTER OBJECT
-        adapter = new ProfileRecyclerViewAdapter(getContext(), videoPlayerModels, initGlide());
+        adapter = new ProfileRecyclerViewAdapter(getContext(), mediaObjects, initGlide());
         recyclerView.setHasFixedSize(true);
 
         // SETUP THE ADAPTER

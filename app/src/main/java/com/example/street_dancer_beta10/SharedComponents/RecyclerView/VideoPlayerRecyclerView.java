@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Point;
 import android.net.Uri;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,9 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.bumptech.glide.RequestManager;
 import com.example.street_dancer_beta10.R;
-import com.example.street_dancer_beta10.SharedComponents.Models.VideoPlayerModel;
+import com.example.street_dancer_beta10.SharedComponents.Models.MediaObject;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -43,19 +43,21 @@ public class VideoPlayerRecyclerView extends RecyclerView {
 
     private static final String TAG = "VideoPlayerRecyclerView";
 
+
+
+    // ENUMERATION CONSTANT TO CONTROL VOLUME
     private enum VolumeState {ON, OFF}
 
-    // ui
+    // UI COMPONENTS
     private ImageView thumbnail, volumeControl;
     private ProgressBar progressBar;
     private View viewHolderParent;
     private FrameLayout frameLayout;
     private PlayerView videoSurfaceView;
-
     private SimpleExoPlayer videoPlayer;
 
-    // vars
-    private ArrayList<VideoPlayerModel> mediaObjects = new ArrayList<>();
+    // VARIABLES
+    private ArrayList<MediaObject> mediaObjects = new ArrayList<>();
     private int videoSurfaceDefaultHeight = 0;
     private int screenDefaultHeight = 0;
     private Context context;
@@ -63,22 +65,29 @@ public class VideoPlayerRecyclerView extends RecyclerView {
     private boolean isVideoViewAdded;
     private RequestManager requestManager;
 
-    // controlling playback state
+    // CONTROLLING PLAYBACK STATE
     private VolumeState volumeState;
 
+    // CONSTRUCTOR
     public VideoPlayerRecyclerView(@NonNull Context context) {
         super(context);
         init(context);
+        playVideo(false);
     }
 
+    // CONSTRUCTOR
     public VideoPlayerRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
+        //playVideo(false);
     }
 
+    private void init(Context context){
 
-    private void init(Context context) {
+        // GET THE APPLICATION CONTEXT
         this.context = context.getApplicationContext();
+
+        // GETTING SCREEN HEIGHT AND VIDEO-SCREEN HEIGHT
         Display display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         Point point = new Point();
         display.getSize(point);
@@ -86,31 +95,37 @@ public class VideoPlayerRecyclerView extends RecyclerView {
         screenDefaultHeight = point.y;
 
         videoSurfaceView = new PlayerView(this.context);
+
         videoSurfaceView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);
 
+        // CREATE THE PLAYER
+        videoPlayer = ExoPlayerFactory.newSimpleInstance(this.context);
 
-        // 2. Create the player
-        videoPlayer = ExoPlayerFactory.newSimpleInstance(context);
-        // Bind the player to the view.
+        // BIND THE PLAYER TO THE VIEW
         videoSurfaceView.setUseController(false);
         videoSurfaceView.setPlayer(videoPlayer);
         setVolumeControl(VolumeState.ON);
 
-        addOnScrollListener(new OnScrollListener() {
+        // SET ON SCROLL LISTENER
+        addOnScrollListener(new RecyclerView.OnScrollListener() {
+
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    if (thumbnail != null) { // show the old thumbnail
+
+                    // SHOW THE OLD THUMBNAIL IF THE SCROLL STATE IS IDLE
+                    if(thumbnail != null){
                         thumbnail.setVisibility(VISIBLE);
                     }
 
                     // There's a special case when the end of the list has been reached.
                     // Need to handle that with this bit of logic
-                    if (!recyclerView.canScrollVertically(1)) {
+                    if(!recyclerView.canScrollVertically(1)){
                         playVideo(true);
-                    } else {
+                    }
+                    else{
                         playVideo(false);
                     }
                 }
@@ -123,102 +138,95 @@ public class VideoPlayerRecyclerView extends RecyclerView {
         });
 
         addOnChildAttachStateChangeListener(new OnChildAttachStateChangeListener() {
-            @Override
-            public void onChildViewAttachedToWindow(View view) {
 
-            }
+            @Override
+            public void onChildViewAttachedToWindow(View view) {            }
 
             @Override
             public void onChildViewDetachedFromWindow(View view) {
+
                 if (viewHolderParent != null && viewHolderParent.equals(view)) {
                     resetVideoView();
                 }
-
             }
         });
 
         videoPlayer.addListener(new Player.EventListener() {
-            @Override
-            public void onTimelineChanged(Timeline timeline, @Nullable Object manifest, int reason) {
-
-            }
 
             @Override
-            public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
-
-            }
+            public void onTimelineChanged(Timeline timeline, @Nullable Object manifest, int reason) {            }
 
             @Override
-            public void onLoadingChanged(boolean isLoading) {
+            public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {            }
 
-            }
+            @Override
+            public void onLoadingChanged(boolean isLoading) {            }
 
             @Override
             public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+
                 switch (playbackState) {
 
                     case Player.STATE_BUFFERING:
+
+                        // SHOW PROGRESS BAR WHEN BUFFERING
                         if (progressBar != null) {
                             progressBar.setVisibility(VISIBLE);
                         }
-
                         break;
+
                     case Player.STATE_ENDED:
+                        Log.d(TAG, "onPlayerStateChanged: Video ended.");
                         videoPlayer.seekTo(0);
                         break;
-                    case Player.STATE_IDLE:
 
+                    case Player.STATE_IDLE:
                         break;
+
                     case Player.STATE_READY:
+                        Log.e(TAG, "onPlayerStateChanged: Ready to play.");
+                        // WHEN VIDEO IS READY TO PLAY HIDE THE PROGRESS-BAR
                         if (progressBar != null) {
                             progressBar.setVisibility(GONE);
                         }
-                        if (!isVideoViewAdded) {
+
+                        if(!isVideoViewAdded){
                             addVideoView();
                         }
                         break;
+
                     default:
                         break;
                 }
             }
 
             @Override
-            public void onRepeatModeChanged(int repeatMode) {
-
-            }
+            public void onRepeatModeChanged(int repeatMode) {            }
 
             @Override
-            public void onShuffleModeEnabledChanged(boolean shuffleModeEnabled) {
-
-            }
+            public void onShuffleModeEnabledChanged(boolean shuffleModeEnabled) {            }
 
             @Override
-            public void onPlayerError(ExoPlaybackException error) {
-
-            }
+            public void onPlayerError(ExoPlaybackException error) {            }
 
             @Override
-            public void onPositionDiscontinuity(int reason) {
-
-            }
+            public void onPositionDiscontinuity(int reason) {            }
 
             @Override
-            public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
-
-            }
+            public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {            }
 
             @Override
-            public void onSeekProcessed() {
-
-            }
+            public void onSeekProcessed() {            }
         });
+
     }
 
     public void playVideo(boolean isEndOfList) {
-
+        Log.d(TAG, "playVideo: PLAY-VIDEO CALLED" + isEndOfList);
         int targetPosition;
 
-        if (!isEndOfList) {
+        if(!isEndOfList){
+
             int startPosition = ((LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition();
             int endPosition = ((LinearLayoutManager) getLayoutManager()).findLastVisibleItemPosition();
 
@@ -238,12 +246,15 @@ public class VideoPlayerRecyclerView extends RecyclerView {
                 int endPositionVideoHeight = getVisibleVideoSurfaceHeight(endPosition);
 
                 targetPosition = startPositionVideoHeight > endPositionVideoHeight ? startPosition : endPosition;
-            } else {
+            }
+            else {
                 targetPosition = startPosition;
             }
-        } else {
+        }
+        else{
             targetPosition = mediaObjects.size() - 1;
         }
+        Log.d(TAG, "playVideo: target position: " + targetPosition);
 
         // video is already playing so return
         if (targetPosition == playPosition) {
@@ -252,26 +263,30 @@ public class VideoPlayerRecyclerView extends RecyclerView {
 
         // set the position of the list-item that is to be played
         playPosition = targetPosition;
+
         if (videoSurfaceView == null) {
             return;
         }
 
         // remove any old surface views from previously playing videos
         videoSurfaceView.setVisibility(INVISIBLE);
+
         removeVideoView(videoSurfaceView);
 
         int currentPosition = targetPosition - ((LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition();
-
         View child = getChildAt(currentPosition);
+
         if (child == null) {
             return;
         }
 
         VideoPlayerRecyclerAdapter.VideoPlayerViewHolder holder = (VideoPlayerRecyclerAdapter.VideoPlayerViewHolder) child.getTag();
+
         if (holder == null) {
             playPosition = -1;
             return;
         }
+
         thumbnail = holder.thumbnail;
         progressBar = holder.progressBar;
         volumeControl = holder.volumeControl;
@@ -280,15 +295,13 @@ public class VideoPlayerRecyclerView extends RecyclerView {
         frameLayout = holder.itemView.findViewById(R.id.media_container);
 
         videoSurfaceView.setPlayer(videoPlayer);
-
         viewHolderParent.setOnClickListener(videoViewClickListener);
 
-        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(
-                context, Util.getUserAgent(context, "RecyclerView VideoPlayer"));
+        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, "RecyclerView VideoPlayer"));
         String mediaUrl = mediaObjects.get(targetPosition).getMedia_url();
+
         if (mediaUrl != null) {
-            MediaSource videoSource = new ExtractorMediaSource.Factory(dataSourceFactory)
-                    .createMediaSource(Uri.parse(mediaUrl));
+            MediaSource videoSource = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(mediaUrl));
             videoPlayer.prepare(videoSource);
             videoPlayer.setPlayWhenReady(true);
         }
@@ -301,17 +314,18 @@ public class VideoPlayerRecyclerView extends RecyclerView {
         }
     };
 
-    /**
+    /*
      * Returns the visible region of the video surface on the screen.
      * if some is cut off, it will return less than the @videoSurfaceDefaultHeight
-     *
      * @param playPosition
      * @return
      */
     private int getVisibleVideoSurfaceHeight(int playPosition) {
-        int at = playPosition - ((LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition();
 
+        int at = playPosition - ((LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition();
+        Log.d(TAG, "getVisibleVideoSurfaceHeight: at: " + at);
         View child = getChildAt(at);
+
         if (child == null) {
             return 0;
         }
@@ -321,29 +335,31 @@ public class VideoPlayerRecyclerView extends RecyclerView {
 
         if (location[1] < 0) {
             return location[1] + videoSurfaceDefaultHeight;
-        } else {
+        }
+        else {
             return screenDefaultHeight - location[1];
         }
     }
 
-
     // Remove the old player
     private void removeVideoView(PlayerView videoView) {
         ViewGroup parent = (ViewGroup) videoView.getParent();
+
         if (parent == null) {
             return;
         }
 
         int index = parent.indexOfChild(videoView);
+
         if (index >= 0) {
             parent.removeViewAt(index);
             isVideoViewAdded = false;
             viewHolderParent.setOnClickListener(null);
         }
-
     }
 
-    private void addVideoView() {
+    private void addVideoView(){
+
         frameLayout.addView(videoSurfaceView);
         isVideoViewAdded = true;
         videoSurfaceView.requestFocus();
@@ -352,8 +368,9 @@ public class VideoPlayerRecyclerView extends RecyclerView {
         thumbnail.setVisibility(GONE);
     }
 
-    private void resetVideoView() {
-        if (isVideoViewAdded) {
+    private void resetVideoView(){
+
+        if(isVideoViewAdded){
             removeVideoView(videoSurfaceView);
             playPosition = -1;
             videoSurfaceView.setVisibility(INVISIBLE);
@@ -367,54 +384,59 @@ public class VideoPlayerRecyclerView extends RecyclerView {
             videoPlayer.release();
             videoPlayer = null;
         }
-
         viewHolderParent = null;
     }
 
     private void toggleVolume() {
+
         if (videoPlayer != null) {
+
             if (volumeState == VolumeState.OFF) {
+                Log.d(TAG, "togglePlaybackState: enabling volume.");
                 setVolumeControl(VolumeState.ON);
-
-            } else if (volumeState == VolumeState.ON) {
+            }
+            else if(volumeState == VolumeState.ON) {
+                Log.d(TAG, "togglePlaybackState: disabling volume.");
                 setVolumeControl(VolumeState.OFF);
-
             }
         }
     }
 
-    private void setVolumeControl(VolumeState state) {
+    private void setVolumeControl(VolumeState state){
         volumeState = state;
-        if (state == VolumeState.OFF) {
+
+        if(state == VolumeState.OFF){
             videoPlayer.setVolume(0f);
             animateVolumeControl();
-        } else if (state == VolumeState.ON) {
+        }
+        else if(state == VolumeState.ON){
             videoPlayer.setVolume(1f);
             animateVolumeControl();
         }
     }
 
-    private void animateVolumeControl() {
-        if (volumeControl != null) {
+    private void animateVolumeControl(){
+
+        if(volumeControl != null){
             volumeControl.bringToFront();
-            if (volumeState == VolumeState.OFF) {
+
+            if(volumeState == VolumeState.OFF){
                 requestManager.load(R.drawable.video_volume_off)
                         .into(volumeControl);
-            } else if (volumeState == VolumeState.ON) {
+            }
+            else if(volumeState == VolumeState.ON){
                 requestManager.load(R.drawable.video_volume_up)
                         .into(volumeControl);
             }
             volumeControl.animate().cancel();
-
             volumeControl.setAlpha(1f);
-
             volumeControl.animate()
                     .alpha(0f)
                     .setDuration(600).setStartDelay(1000);
         }
     }
 
-    public void setMediaObjects(ArrayList<VideoPlayerModel> mediaObjects) {
+    public void setMediaObjects(ArrayList<MediaObject> mediaObjects){
         this.mediaObjects = mediaObjects;
     }
 }
