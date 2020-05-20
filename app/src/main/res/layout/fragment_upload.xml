@@ -17,12 +17,26 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="Street Dancer" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <VideoView
+        android:id="@+id/video_view_upload"
+        android:layout_below="@+id/toolbar_upload"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_gravity="center"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <Button
+        android:id="@+id/button_upload"
+        android:layout_below="@id/video_view_upload"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="35dp"
+        android:layout_centerHorizontal="true"
+        android:elevation="5dp"
+        android:gravity="center"
         android:textColor="@android:color/white"
-        android:textSize="30dp"
+        android:background="@drawable/upload_button_background"
         android:text="Upload"/>
 
 </RelativeLayout>
